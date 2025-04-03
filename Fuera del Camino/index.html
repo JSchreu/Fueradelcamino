@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuera del Camino Proefformulier</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A1F24">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/fontawesome.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Wijn Proeven">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <i class="fas fa-glass-cheers"></i>
+                <span>Wijn Proefmethode</span>
+            </div>
+            <div class="nav-tabs">
+                <button class="tab-btn active" data-tab="input">Invoeren</button>
+                <button class="tab-btn" data-tab="search">Zoeken</button>
+                <button class="tab-btn" data-tab="stats">Statistieken</button>
+            </div>
+            <div class="nav-user">
+                <input type="text" id="userName" placeholder="Jouw naam" class="user-name-input">
+            </div>
+        </nav>
+
+        <div class="tab-content active" data-content="input" id="form">
+            <h2><i class="fas fa-wine-glass"></i> Fuera del Camino Proefformulier</h2>
+            
+            <form id="wineTastingForm">
+                <div class="section">
+                    <h3><i class="fas fa-info-circle"></i> Wijn Informatie</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="wineType">Wijn Type</label>
+                            <select id="wineType" required>
+                                <option value="">Selecteer type</option>
+                                <option value="rood">Rood</option>
+                                <option value="wit">Wit</option>
+                                <option value="rosé">Rosé</option>
+                                <option value="mousserend">Mousserend</option>
+                                <option value="dessert">Dessertwijn</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vintage">Vintage</label>
+                            <input type="number" id="vintage" min="1900" max="2024" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="winemaker">Wijnmaker</label>
+                            <input type="text" id="winemaker" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Regio</label>
+                            <input type="text" id="region" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Prijs</label>
+                            <input type="number" id="price" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="grape">Druivensoort</label>
+                            <input type="text" id="grape" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-eye"></i> Uiterlijk</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="clarity">Helderheid</label>
+                            <select id="clarity" required>
+                                <option value="">Selecteer helderheid</option>
+                                <option value="helder">Helder</option>
+                                <option value="licht_troebel">Licht troebel</option>
+                                <option value="troebel">Troebel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="intensity">Intensiteit</label>
+                            <select id="intensity" required>
+                                <option value="">Selecteer intensiteit</option>
+                                <option value="licht">Licht</option>
+                                <option value="medium">Medium</option>
+                                <option value="donker">Donker</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Kleur</label>
+                            <input type="text" id="color" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-nose"></i> Neus</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="noseIntensity">Intensiteit</label>
+                            <select id="noseIntensity" required>
+                                <option value="">Selecteer intensiteit</option>
+                                <option value="licht">Licht</option>
+                                <option value="medium">Medium</option>
+                                <option value="krachtig">Krachtig</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="noseCondition">Conditie</label>
+                            <select id="noseCondition" required>
+                                <option value="">Selecteer conditie</option>
+                                <option value="zuiver">Zuiver</option>
+                                <option value="onzuiver">Onzuiver</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="noseDevelopment">Ontwikkeling</label>
+                            <select id="noseDevelopment" required>
+                                <option value="">Selecteer ontwikkeling</option>
+                                <option value="jong">Jong</option>
+                                <option value="in_ontwikkeling">In ontwikkeling</option>
+                                <option value="volledig_ontwikkeld">Volledig ontwikkeld</option>
+                                <option value="over_de_top">Over de top</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Aromas</label>
+                        <div id="aromaSelector" class="aroma-selector">
+                            <!-- Dynamisch gegenereerd door JavaScript -->
+                        </div>
+                        <div class="form-group custom-aroma">
+                            <label for="customAroma">Eigen Aroma Toevoegen</label>
+                            <div class="custom-aroma-input">
+                                <input type="text" id="customAroma" placeholder="Vul eigen aroma in">
+                                <button type="button" class="add-aroma-btn" id="addCustomAroma">
+                                    <i class="fas fa-plus"></i> Toevoegen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-tongue"></i> Smaak</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="sweetness">Zoetheid</label>
+                            <select id="sweetness" required>
+                                <option value="">Selecteer zoetheid</option>
+                                <option value="droog">Droog</option>
+                                <option value="half_droog">Half-droog</option>
+                                <option value="half_zoet">Half-zoet</option>
+                                <option value="zoet">Zoet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="acidity">Zuurte</label>
+                            <select id="acidity" required>
+                                <option value="">Selecteer zuurte</option>
+                                <option value="laag">Laag</option>
+                                <option value="medium">Medium</option>
+                                <option value="hoog">Hoog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tannin">Tannine</label>
+                            <select id="tannin" required>
+                                <option value="">Selecteer tannine</option>
+                                <option value="laag">Laag</option>
+                                <option value="medium">Medium</option>
+                                <option value="hoog">Hoog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="alcohol">Alcohol</label>
+                            <select id="alcohol" required>
+                                <option value="">Selecteer alcohol</option>
+                                <option value="laag">Laag</option>
+                                <option value="medium">Medium</option>
+                                <option value="hoog">Hoog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="body">Body</label>
+                            <select id="body" required>
+                                <option value="">Selecteer body</option>
+                                <option value="licht">Licht</option>
+                                <option value="medium">Medium</option>
+                                <option value="vol">Vol</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="finish">Finish</label>
+                        <select id="finish" required>
+                            <option value="">Selecteer finish</option>
+                            <option value="kort">Kort</option>
+                            <option value="medium">Medium</option>
+                            <option value="lang">Lang</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3><i class="fas fa-star"></i> Conclusie</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="quality">Kwaliteit</label>
+                            <select id="quality" required>
+                                <option value="">Selecteer kwaliteit</option>
+                                <option value="uitzonderlijk">Uitzonderlijk</option>
+                                <option value="uitstekend">Uitstekend</option>
+                                <option value="zeer_goed">Zeer goed</option>
+                                <option value="goed">Goed</option>
+                                <option value="acceptabel">Acceptabel</option>
+                                <option value="slecht">Slecht</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="readiness">Drinkbaarheid</label>
+                            <select id="readiness" required>
+                                <option value="">Selecteer drinkbaarheid</option>
+                                <option value="niet_rijp">Niet rijp</option>
+                                <option value="drinkbaar">Drinkbaar</option>
+                                <option value="op_peak">Op peak</option>
+                                <option value="over_peak">Over peak</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Algemene Notities</label>
+                        <textarea id="notes" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i>
+                        Opslaan
+                    </button>
+                    <button type="reset" class="reset-btn">
+                        <i class="fas fa-undo"></i>
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-content" data-content="search" id="search">
+            <h2><i class="fas fa-search"></i> Zoek Proefnotities</h2>
+            <div class="search-container">
+                <div class="search-filters">
+                    <div class="search-group">
+                        <label for="searchInput">Zoekterm</label>
+                        <input type="text" id="searchInput" placeholder="Zoek op wijnnaam, regio, druivensoort...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="qualityFilter">Kwaliteit</label>
+                        <select id="qualityFilter">
+                            <option value="">Alle kwaliteiten</option>
+                            <option value="uitzonderlijk">Uitzonderlijk</option>
+                            <option value="uitstekend">Uitstekend</option>
+                            <option value="zeer_goed">Zeer goed</option>
+                            <option value="goed">Goed</option>
+                            <option value="acceptabel">Acceptabel</option>
+                            <option value="slecht">Slecht</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priceFilter">Prijs Range</label>
+                        <select id="priceFilter">
+                            <option value="">Alle prijzen</option>
+                            <option value="0-10">€0 - €10</option>
+                            <option value="10-20">€10 - €20</option>
+                            <option value="20-30">€20 - €30</option>
+                            <option value="30-50">€30 - €50</option>
+                            <option value="50+">€50+</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-results" id="searchResults">
+                    <!-- Dynamisch gegenereerd door JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" data-content="stats" id="stats">
+            <h2><i class="fas fa-chart-bar"></i> Statistieken</h2>
+            <!-- ... existing stats content ... -->
+        </div>
+    </div>
+    <script>
+        // Registreer service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registratie succesvol:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registratie mislukt:', error);
+                    });
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 
